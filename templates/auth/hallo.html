@@ -1,0 +1,348 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<div class="links-col" id="links-col">
+	<div class="links-col-panel" id="links-col-panel-1">
+ <h1 class="logo_title--weiss" id="logo_title_id">{{user.home_title}}</h1> 
+<canvas id="canvas2"></canvas>
+	<!--	<canvas 
+<canvas id="canvas2"></canvas>
+		<script>
+		var c = document.getElementById("canvas2");
+		var ctx = c.getContext("2d");
+		ctx.fillStyle = "#FF0000";
+		ctx.fillRect(20, 20, 150, 100);
+		
+		var panel = document.getElementById('links-col-panel-1');
+		var cs = getComputedStyle(panel);
+		var width = parseInt(cs.getPropertyValue('width'), 1);
+		var height = parseInt(cs.getPropertyValue('height'), 1);
+
+		var canvas = document.getElementById('canvas2');
+
+		canvas.width = width;
+		console.log(width)
+
+		</script>
+		<img class="logo_bild" src="static/logos/logo.png" id="logo" alt="cellogo" width="180" height="180">
+	<script>
+		var elem = document.getElementById("logo");   
+		var deg = 0;
+		var id = setInterval(frame, 10);
+		function frame() {
+			if (deg == 360) {
+			  deg = 0;
+			} else {
+			  deg += 0.10; 
+			  elem.style.transform = "rotate(" + deg + "deg)";
+			}
+		}
+		</script>-->
+	</div><!-- logo ende -->
+
+<div class="m_zeit, links-col-panel" id="m_zeit_id">
+
+	<h2 class="zeit_title--weiss" id="tageszeit"></h2>
+	<h2 class="zeit_title--blau" id="benutzer_name"></h2>
+	<br>
+	<h3 class="zeit_title--weiss" id="zeit_title_id">Zeit</h3>
+	<h3 class="zeit_title--blau" id="uhr"></h3>
+	<br>
+	<h3 class="zeit_title--weiss" id="date_title_id">Date</h3>
+	<h3 class="zeit_title--blau" id="datum"></h3>
+
+</div> <!-- zeit ende -->
+
+<div class="m_wetter, links-col-panel" id="m_wetter_id">
+	<h3 class="wetter_title--weiss" id="wetter_standort">Nirgendwo</h3>
+	<h3 class="wetter_title--blau" id="temp"></h3>
+	<h3 class="wetter_title--blau" id="gefuhl"></h3>
+</div><!-- wetter ende -->
+
+<div class="loginout, links-col-panel", id="links-col-panel-4">
+<br>
+<a href="{{ url_for('update_user') }}" onmouseover="PlaySound('mySound')" 
+    onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Update Settings</a>
+<hr>
+<a href="{{ url_for('logout') }}" onmouseover="PlaySound('mySound')" 
+    onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Logout</a>
+
+<br>
+</div>
+</div><!-- links col ende -->
+
+<div class="mitte-col" id="mitte-col">
+
+<div class="m_suche, mitte-col-panel-1" id="m_suche_id">
+	<h1 class="suche_title--weiss" >Suche</h1>
+	<input class="suche_input" id="suche_input" placeholder="options : !g | !y | !w"></input>
+</div><!-- suche ende -->
+
+<div class="m_lesenzeichen, mitte-col-panel-2" id="m_lesenzeichen_id">
+
+<h1 class="lesenzeichen_title--weiss" id="lesezeichen_title_id">Lesenzeichen</h1>
+<br>
+
+<div class="all_lesenzeichen_listen">
+<script>var kurz_taste_wb2 = new Map();</script>
+{% if subjects %}
+
+	{% for subject in subjects %}
+		<div class="lesenzeichen_list_block">
+			<h3 class="lesenzeichen_liste_title--weiss" id="arbeit_title_id" >
+
+			<a href="{{ url_for('update_subject', subject_id=subject.id) }}" onmouseover="PlaySound('mySound')" 
+    onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')"> 
+			<span class="subject_title">{{ subject.title }}</span></a></h3>
+			
+				<ul class="lesen_zeichen_liste_ul">
+				{% for bookmark in subject.bookmarks %}
+						<script>kurz_taste_wb2.set("{{bookmark.hotkey}}","{{bookmark.link}}");</script>
+					<li class="lesen_zeichen_liste_element--weiss">
+					
+						<span class="lesenzeichen_kurz_name"><a href="{{bookmark.link}}" onmouseover="PlaySound('mySound')" 
+						onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')" target="_blank">{{bookmark.hotkey}}</a></span>
+						
+						<span class="lesenzeichen_lange_name">
+						<a href="{{bookmark.link}}" onmouseover="PlaySound('mySound')" 
+						onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')" target="_blank">{{bookmark.title}}</a></span>
+						
+					<span class="lesenzeichen_kurz_name">
+					<a href="{{ url_for('update_bookmark', bookmark_id=bookmark.id, subject_id=subject.id) }}" 
+					onmouseover="PlaySound('mySound')" 
+					onmouseout="StopSound('mySound')" 
+					onclick="PlaySound('mygoSound')"> 
+					edit</a>
+					</span>
+					
+					</li>
+					
+						
+				{% endfor %}
+				
+				</ul>
+		<a href="{{ url_for('create_bookmark', id=subject.id) }}" onmouseover="PlaySound('mySound')" 
+    onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">New</a>
+		</div>
+	{% endfor %}
+	
+{% endif %}
+<br><br>
+<a href="{{ url_for('create_subject') }}" onmouseover="PlaySound('mySound')" 
+    onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Add Subject</a>
+</div> <!--ende alle lesezeichen liste-->
+</div> <!--ende lesezeichen -->
+</div> <!-- ende mitte-col -->
+
+<div class="rechts-col" id="rechts-col">
+
+<div class="m_zeitgeber, rechts-col-panel-1" id="m_zeitgeber_id">
+<h4 class="zeitgeber_title--weiss" id="zeitgeber_title_id">Notes</h4>
+<hr class="zeitgeber_hr">
+
+	{% if notes %}
+	
+			{% for note in notes %}
+			<!--
+			<h4 class="zeitgeber_untertitle--weiss" id="zeitgeber_subtitle_id"><i>note.title as jinja</i></h4>-->
+			
+			<div  class="note_section">
+			 <br>
+		     <h1 class="zeitgeber_uhr--weiss"></h1>
+			 <p>{{note.text}}</p>
+				<!--
+				<span id="stunden"></span>
+				: <span id="minuten"></span>
+				: <span id="sekunden"></span>
+				</h1>		
+			    -->
+				<!-- for timer add timer.hours,timer.minutes, timer.seconds with jinja braces -->
+			
+			</div>
+			<br>
+			<!--
+		<div class="ende_sektion">
+			<div class="button_div ">
+				<button type="button" class="zeitgeber_btn" id="start_button" onclick="start()">Start</button>
+				</div>
+				<div class="button_div">
+				<button type="button" class="zeitgeber_btn" id="stopp_button" onclick="stopp()">Stopp</button>
+			</div>
+			<div class="button_div">
+				<button type="button" class="zeitgeber_btn" id="pause_button" onclick="pause()">Pause</button>
+			</div>
+			<div class="button_div">
+				<button type="button" class="zeitgeber_btn" id="timer_modal_form_open_button">Bearbeiten</button>
+			</div>
+					
+		    </div>
+				-->
+		
+			<a href="{{ url_for('update_note', id=note.id)}}" onmouseover="PlaySound('mySound')"
+    onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">edit</a><br>
+			{% endfor %}
+	{% endif %}
+<!--	<a href="{{ url_for('create_note')}}" onmouseover="PlaySound('mySound')"
+    onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Add New Note</a>-->
+</div><!-- timer ende-->
+
+
+<div class="m_nachrichten, rechts-col-panel-2" id="m_nachrichten_id">
+<h3 class="nachrichten_title--weiss" id="kryptowahrung_title_id">kryptowahrung</h3>
+
+<hr class="munzen_hr">
+
+<br>
+
+<div>
+	<script>const global_query_liste2 = [];</script>
+		<ul id="munzen">
+			{% for crypto in cryptos %}
+			
+				<script>global_query_liste2.push(["{{crypto.crypto_acronym}}","{{crypto.fiat_acronym}}", {{crypto.id}} ]);</script>
+				<!--
+				<li class="munzen_list_element">{{crypto.title}} {{crypto.link}} {{crypto.crypto_acronym}} {{crypto.fiat_acronym}} </li>
+				 -->
+				<li class="munzen_list_element"> 
+					<span class='krypto_info_links--blau'></span>
+					<span class='krypto_info_rechts--weiss'></span>
+					<span class='krypto_info_rechts--weiss'><a href={{ url_for('update_crypto',  id=crypto.id)}} onmouseover="PlaySound('mySound')" 
+						onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')"> Edit</a></span>
+				</li>
+				<!--
+				<a href="{{ url_for('update_crypto', id=crypto.id)}}" onmouseover="PlaySound('mySound')" 
+    onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">~edit~</a><br> -->
+	
+			{% endfor %}
+		</ul>
+			
+	<a href="{{ url_for('create_crypto')}}" onmouseover="PlaySound('mySound')" 
+    onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Add New Crypto</a>
+</div>
+</div> 
+
+
+
+
+
+</div>
+
+<script>
+//Urh Global Variablen
+var global_benutzer_name = "{{user.name}}!";
+
+
+//begrussungen
+var global_morgengruss = "{{user.morning_greeting}}";
+var global_nachmittaggruss = "{{user.afternoon_greeting}}";
+var global_abendgruss = "{{user.evening_greeting}}";
+var global_nachtgruss = "{{user.night_greeting}}";
+
+
+//Wetter Global Variablen
+var global_lat = {{user.latitude}};
+var global_lon = {{user.longitude}};
+var global_lande_texte = "{{user.country}}";
+
+
+//Krypto Global Variablen
+var global_query_liste = [["BTC", "CAD"],
+				   ["ETH","CAD"],
+				   ["LINK","CAD"],
+				   ["EOS","CAD"],
+				   ["XLM","CAD"],
+				   ["LTC","CAD"],
+				   ["DOT","CAD"],
+				   ];
+
+var global_sprachen_auswahl = "de" //en, de
+</script>
+	
+<!--<script src="static/scripts/global_einstellungen.js"></script>
+-->
+
+<script src="static/static/scripts/klangbeimaus.js"></script>
+<script src="static/scripts/uhr.js"></script>
+<script src="static/scripts/wetter.js"></script>
+<script src="static/scripts/taste_kombinationen.js"></script>
+
+<!--<script src="static/scripts/teilchen.js"></script>-->
+<script src="static/scripts/zeitgeber.js"></script>
+<script src="static/scripts/coinbaseapi.js"></script>
+<script src="static/scripts/klangbeimaus.js"></script>
+<script src="static/scripts/zufall_bild.js"></script>
+<!--
+<script src="static/scripts/sprache_steuerung.js"></script>
+<script src="static/scripts/visibility.js"></script>
+<script src="scripts/zogere_ausblenden.js"></script>
+-->
+<script>
+	window.onload = function init() {
+     	var canvas = document.getElementById("canvas2")
+		var gl = canvas.getContext("webgl");
+		console.log(gl);
+		var vshader = `
+		void main(){
+		  gl_Position=vec4(0,0,0,1);gl_PointSize=300.0;
+		}`;
+		var fshader = `
+		precision lowp float;
+		uniform float t;
+		uniform float resx;
+		uniform float resy;
+		#define EPS 0.001
+#define S(r,a) smoothstep(r+EPS,r-EPS,a);
+
+float circleProj(vec2 uv, vec3 p, float r){
+    return S(r/p.z,length(uv-p.xy/(p.z)));
+}
+
+
+mat2 rotX(float a){
+    float s = sin(a), c = cos(a);
+    return mat2(c,-s,s,c);
+}
+		void main(){
+		 vec4 p=vec4(gl_FragCoord.xy/min(resy,resx)-0.5,0.,1);
+		 vec2 uv = p.xy-vec2(0.5,0.);
+		 vec4 col = vec4(0.,0.,0.,0.4);
+		 float zMax = 5.;
+		 float xMax = 5.;
+		 for(float i = -0.5; i <= 0.5; i++){
+		 for(float j = -0.5; j <= 0.5; j++){
+		 for(float k = 1. ; k <= 2.; k++){
+			vec3 coords = vec3(i,j,k);
+			coords.xy *= rotX(t*.02);
+			coords.z -= 1.5;
+			coords.xz *= rotX(t*.02);
+			coords.z +=1.5;
+			col = mix(col,vec4(0.7,0.7,0.7,1.),circleProj(uv*1.6, coords, 0.15));
+		 }}}
+		// col = mix(col, vec4(1.),smoothstep(0.4,0.39,length(p.xy-vec2(0.5,0.))));
+		 gl_FragColor=col;//p+sin(atan(p.y,p.x)*9.)*sin(p*t/40.0+9./dot(p,p)+t/40.); // <= your shader here
+		}`;
+		var vs = gl.createShader(gl.VERTEX_SHADER);
+		gl.shaderSource(vs, vshader);
+		gl.compileShader(vs);
+		var fs = gl.createShader(gl.FRAGMENT_SHADER);
+		gl.shaderSource(fs, fshader);
+		gl.compileShader(fs);
+		var program = gl.createProgram();
+		gl.attachShader(program, vs);
+		gl.attachShader(program, fs);
+		gl.linkProgram(program);
+		gl.useProgram(program);
+		var frame = 0;
+		setInterval(() => {
+		  gl.uniform1f(gl.getUniformLocation(program, "t"), frame++);
+		  gl.uniform1f(gl.getUniformLocation(program, "resx"), canvas.width);
+		  gl.uniform1f(gl.getUniformLocation(program, "resy"), canvas.height);
+		  gl.drawArrays(gl.POINTS,0,1);
+		},16)
+}
+
+		</script> 
+{% endblock %}
