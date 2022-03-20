@@ -3,7 +3,7 @@
 
 #
 """
-app.py: 
+app.py:
 """
 
 #D DEVELOPMENT
@@ -25,7 +25,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 
 #Routes
-import user_routes, bookmark_routes, timer_routes, crypto_routes#, subject_routes
+import user_routes, bookmark_routes, timer_routes, crypto_routes
 #Modules
 from flask_app import db, app
 from models import User, Subject, Bookmark, Crypto, Timer
@@ -35,14 +35,14 @@ from models import User, Subject, Bookmark, Crypto, Timer
 class Subject_Creation_form(FlaskForm):
 	title = StringField('Title', validators=[DataRequired()])
 	create = SubmitField('Create_subject')
-	
+
 class Subject_Update_form(FlaskForm):
 	title = StringField('Title', validators=[DataRequired()])
 	create = SubmitField('Update_subject')
-	
+
 @app.route("/create_subject", methods=["GET", "POST"])
 def create_subject():
-	
+
 	form = Subject_Creation_form()
 	#if request.method == "POST":
 	if form.validate_on_submit():
@@ -53,28 +53,26 @@ def create_subject():
 		return redirect(url_for('index'))
 
 	return render_template('subjects/create_subject.html', form=form)
-	
-	
+
+
 @app.route("/update_subject/<int:subject_id>", methods=["GET", "POST"])
 def update_subject(subject_id):
 	form = Subject_Update_form()
 	#if request.method == "POST":
-	
-	print(form)
+
+	#print(form)
 	if form.validate_on_submit():
-		print('validated!')
 		subject = db.session.query(Subject).get(session["current_subject"])
 		form = Subject_Update_form()
 		subject.title = form.title.data
 		db.session.commit()
-		print('data commited')
 		return redirect(url_for('index'))
-		
+
 	session["current_subject"]=subject_id
 	subject = db.session.query(Subject).get(subject_id)
 	return render_template('subjects/update_subject.html', form=form,\
 	subject_id=subject_id,title=subject.title)
-	
+
 @app.route("/delete_subject/<int:id>")
 def delete_subject(id):
 	#if request.method == "POST":
