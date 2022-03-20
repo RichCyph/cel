@@ -29,9 +29,9 @@
 
 	var stoppwatch_ziel_offset;// = stoppwatch_input_hours*60*60*1000 + stoppwatch_input_minutes*60*1000 + stoppwatch_input_seconds*1000;
 	
-	document.getElementById("stoppwatch_stunden").innerHTML = stoppwatch_input_hours.toString().padStart(2, '0');
-	document.getElementById("stoppwatch_minuten").innerHTML = stoppwatch_input_minutes.toString().padStart(2, '0');
-	document.getElementById("stoppwatch_sekunden").innerHTML = stoppwatch_input_seconds.toString().padStart(2, '0');
+	document.getElementById("stoppwatch_stunden").innerText = stoppwatch_input_hours.toString().padStart(2, '0');
+	document.getElementById("stoppwatch_minuten").innerText = stoppwatch_input_minutes.toString().padStart(2, '0');
+	document.getElementById("stoppwatch_sekunden").innerText = stoppwatch_input_seconds.toString().padStart(2, '0');
 		
 	//start funktion
 	function stoppwatch_start(){
@@ -76,15 +76,15 @@
 		stoppwatch_verstrichene_zeit_sekunden = Math.floor( (stoppwatch_verstrichene_zeit_ms - stoppwatch_verstrichene_zeit_stunden*60*60*1000 - stoppwatch_verstrichene_zeit_minuten*60*1000 ) / (1000));
 		
 		//drucken die einheiten auf die bildschirm
-		document.getElementById("stoppwatch_stunden").innerHTML = (stoppwatch_verstrichene_zeit_stunden.toString()).padStart(2, '0');
-		document.getElementById("stoppwatch_minuten").innerHTML = (stoppwatch_verstrichene_zeit_minuten.toString()).padStart(2, '0');
-		document.getElementById("stoppwatch_sekunden").innerHTML = (stoppwatch_verstrichene_zeit_sekunden.toString()).padStart(2, '0');
+		document.getElementById("stoppwatch_stunden").innerText = (stoppwatch_verstrichene_zeit_stunden.toString()).padStart(2, '0');
+		document.getElementById("stoppwatch_minuten").innerText = (stoppwatch_verstrichene_zeit_minuten.toString()).padStart(2, '0');
+		document.getElementById("stoppwatch_sekunden").innerText = (stoppwatch_verstrichene_zeit_sekunden.toString()).padStart(2, '0');
 	}
 	
 	//pause
 	function stoppwatch_pause(){
 		stoppwatch_zustand = (stoppwatch_zustand == 'pause') ? 'lauf' : 'pause';
-		document.getElementById("stoppwatch_pause_btn").innerHTML  = (stoppwatch_zustand == 'pause') ? 'fort' : 'pause';
+		document.getElementById("stoppwatch_pause_btn").innerText  = (stoppwatch_zustand == 'pause') ? 'fort' : 'pause';
 	
 	}
 	
@@ -104,9 +104,9 @@
 		 
 		stoppwatch_pause_zeit = 0
 		
-		document.getElementById("stoppwatch_stunden").innerHTML = stoppwatch_input_hours.toString().padStart(2, '0');
-		document.getElementById("stoppwatch_minuten").innerHTML = stoppwatch_input_minutes.toString().padStart(2, '0');
-		document.getElementById("stoppwatch_sekunden").innerHTML = stoppwatch_input_seconds.toString().padStart(2, '0');
+		document.getElementById("stoppwatch_stunden").innerText = stoppwatch_input_hours.toString().padStart(2, '0');
+		document.getElementById("stoppwatch_minuten").innerText = stoppwatch_input_minutes.toString().padStart(2, '0');
+		document.getElementById("stoppwatch_sekunden").innerText = stoppwatch_input_seconds.toString().padStart(2, '0');
 	
 		stoppwatch_zustand = 'stopp';
 	}
