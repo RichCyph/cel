@@ -19,8 +19,9 @@ from sqlalchemy.sql import func
 from sqlalchemy import DateTime, Date
 #Modules
 from flask_app import db
+from flask_login import UserMixin
 
-class User(db.Model):
+class User(UserMixin, db.Model):
 
 	__tablename__ = "users"
 
