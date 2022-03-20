@@ -26,9 +26,9 @@
 
 	var ziel_offset = input_hours*60*60*1000 + input_minutes*60*1000 + input_seconds*1000;
 	
-	document.getElementById("stunden").innerHTML = input_hours.toString().padStart(2, '0');
-	document.getElementById("minuten").innerHTML = input_minutes.toString().padStart(2, '0');
-	document.getElementById("sekunden").innerHTML = input_seconds.toString().padStart(2, '0');
+	document.getElementById("stunden").innerText = input_hours.toString().padStart(2, '0');
+	document.getElementById("minuten").innerText = input_minutes.toString().padStart(2, '0');
+	document.getElementById("sekunden").innerText = input_seconds.toString().padStart(2, '0');
 	
     //setTimeout("klang.pause()", 1000);
 	
@@ -93,16 +93,16 @@
 		verstrichene_zeit_sekunden = Math.floor( (verstrichene_zeit_ms - verstrichene_zeit_stunden*60*60*1000 - verstrichene_zeit_minuten*60*1000 ) / (1000));
 		
 		//drucken die einheiten auf die bildschirm
-		document.getElementById("stunden").innerHTML = (verstrichene_zeit_stunden.toString()).padStart(2, '0');
-		document.getElementById("minuten").innerHTML = (verstrichene_zeit_minuten.toString()).padStart(2, '0');
-		document.getElementById("sekunden").innerHTML = (verstrichene_zeit_sekunden.toString()).padStart(2, '0');
+		document.getElementById("stunden").innerText = (verstrichene_zeit_stunden.toString()).padStart(2, '0');
+		document.getElementById("minuten").innerText = (verstrichene_zeit_minuten.toString()).padStart(2, '0');
+		document.getElementById("sekunden").innerText = (verstrichene_zeit_sekunden.toString()).padStart(2, '0');
 		
 	}
 	
 	//pause
 	function pause(){
 		zustand = (zustand == 'pause') ? 'start' : 'pause';
-		document.getElementById("pause_button").innerHTML  = (zustand == 'pause') ? 'Fortsetzen' : 'Pause';
+		document.getElementById("pause_button").innerText  = (zustand == 'pause') ? 'Fortsetzen' : 'Pause';
 	}
 	
 	//stopp
@@ -119,9 +119,9 @@
 		input_minutes = document.getElementById("input_minutes").value;
 		input_seconds = document.getElementById("input_seconds").value;
 		
-		document.getElementById("stunden").innerHTML = input_hours.toString().padStart(2, '0');
-		document.getElementById("minuten").innerHTML = input_minutes.toString().padStart(2, '0');
-		document.getElementById("sekunden").innerHTML = input_seconds.toString().padStart(2, '0');
+		document.getElementById("stunden").innerText = input_hours.toString().padStart(2, '0');
+		document.getElementById("minuten").innerText = input_minutes.toString().padStart(2, '0');
+		document.getElementById("sekunden").innerText = input_seconds.toString().padStart(2, '0');
 	
 		zustand = 'stopp';	
 	}
