@@ -52,7 +52,6 @@ def create_bookmark(id):
 	form = Bookmark_Creation_form(subject_id=id)
 	#if request.method == "POST":
 	if form.validate_on_submit():
-		#form = Bookmark_Creation_form()
 		
 		hotkey = form.hotkey.data
 		title = form.title.data
@@ -75,19 +74,14 @@ def update_bookmark(subject_id,bookmark_id):
 	
 	print(form)
 	if form.validate_on_submit():
-		print('validated!')
 		bookmark = db.session.query(Bookmark).get(session["current_bookmark"])
 		form = Bookmark_Update_form()
 		
-		#bookmark = db.session.query(Bookmark).get(form.bookmark_id.data)
 		bookmark.hotkey = form.hotkey.data
 		bookmark.title = form.title.data
 		bookmark.link = form.link.data
-		#bookmark.subject_id = form.subject_id.data
-		
-		
+
 		db.session.commit()
-		print('data commited')
 		return redirect(url_for('index'))
 	session["current_bookmark"]=bookmark_id
 	bookmark = db.session.query(Bookmark).get(bookmark_id)
