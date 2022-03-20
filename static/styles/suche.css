@@ -1,12 +1,10 @@
-
-	
 	.suche_title--weiss{
 		color:var(--white);
 		margin:0px;
 		padding:0px;
 		display:inline;
 	}
-	
+
 	.suche_input{
 		height:20px;
 		width:100%;
@@ -15,9 +13,9 @@
 		padding:1px;
 		margin:1px;
 		color: rgba(255,255,255,0.8);
-		
+
 	}
-	
+
 	.suche_input:focus{
 		outline:none;
 	}
