@@ -76,11 +76,7 @@ def registration():
 			error = 'user name already registered.'
 			flash(error)
 			print(error)
-			
-		#if User.query.filter_by(email = email).first():
-		#	error = 'user email already registered.'
-		#	flash(error)
-		#	print(error)
+
 		
 		if len(password) < 8:
 			error = 'password must be at least 8 characters long.'
@@ -190,16 +186,6 @@ def update_user():
 	form = User_Update_form()
 	#if request.method == "POST":
 	
-	print(form.username.data)
-	print(form.password.data)
-	print(form.password2.data)
-	print(form.home_title.data)
-	print(form.country.data)
-	print(form.latitude.data)
-	print(form.longitude.data)
-	print(form.morning_greeting.data)
-	
-	
 	if form.validate_on_submit():
 		errors = None
 		print('validated!')
@@ -210,7 +196,6 @@ def update_user():
 		user.password = form.password.data
 		confirmation = form.password2.data
 		user.home_title = form.home_title.data
-		
 		
 		user.country = form.country.data
 		user.latitude = form.latitude.data
