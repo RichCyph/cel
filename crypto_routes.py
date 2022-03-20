@@ -60,7 +60,11 @@ def create_crypto():
 		fiat_acronym = form.fiat_acronym.data
 		parent_user = session["user_id"]
 		
-		crypto = Crypto(title=title,link=link, crypto_acronym=crypto_acronym, fiat_acronym=fiat_acronym, parent_user=parent_user)
+		crypto = Crypto(\
+		title=title,link=link,\
+		crypto_acronym=crypto_acronym,\
+		fiat_acronym=fiat_acronym,\
+		parent_user=parent_user)
 		
 		db.session.add(crypto)
 		db.session.commit()
@@ -79,14 +83,12 @@ def update_crypto(id):
 		crypto = db.session.query(Crypto).get(id)
 		form = Crypto_Update_form()
 		
-		#crypto = db.session.query(Crypto).get(form.crypto_id.data)
 		crypto.crypto_acronym = form.crypto_acronym.data
 		crypto.fiat_acronym = form.fiat_acronym.data
 		crypto.title = form.title.data
 		crypto.link = form.link.data
-		#crypto.subject_id = form.subject_id.data
-		
-		
+
+
 		db.session.commit()
 		print('data commited')
 		return redirect(url_for('index'))
