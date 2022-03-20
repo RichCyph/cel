@@ -1,0 +1,11 @@
+
+***************************************************
+**********************TO DO************************
+***************************************************
+
+1. Security - Protect Routes
+2. Security - Protect Secret Key
+3. Design - Notes Text Entry Color Darker
+4. AJAX - Note Submission
+5. Module - Reddit News Feed
+6. Module - Important Dates
