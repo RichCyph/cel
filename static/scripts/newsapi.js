@@ -30,7 +30,7 @@ function nachricht() {
 
     xhttp.onreadystatechange = function() {
          if (this.readyState == 4 && this.status == 200) {
-			 document.getElementById("nachricht_text").innerHTML = this.response.text;
+			 document.getElementById("nachricht_text").innerText = this.response.text;
          }
     };
     xhttp.open("GET", news_api_url, true);
