@@ -12,6 +12,7 @@ import datetime
 #Libs
 from flask import Flask, redirect, render_template, request, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
+from flask_paranoid import Paranoid
 from sqlalchemy import (
 	Table, Column, Integer, String, MetaData, ForeignKey, Boolean
 	)
@@ -34,12 +35,20 @@ csp = {
 }
 app = Flask(__name__)
 Talisman(app, content_security_policy=csp)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test3.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test4.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'StArFox64'
+app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['REMEMBER_COOKIE_SECURE'] = True
+app.config['REMEMBER_COOKIE_HTTPONLY'] = True
+
 #app.config['PERMANENT_SESSION_LIFETIME'] =
 csrf.init_app(app)
 db = SQLAlchemy(app)
+
+paranoid = Paranoid(app)
+paranoid.redirect_view = '/'
 
 #Modules
 import user_routes, bookmark_routes,\
@@ -62,7 +71,7 @@ def index():
 	if 'user_id' not in session:
 		return render_template('auth/index.html')
 	else:
-		user_id =session['user_id'];
+		user_id = session['user_id'];
 		user = db.session.query(User).get(session["user_id"])
 		subjects = db.session.query(Subject).filter_by(parent_user = user_id).all()
 
