@@ -1,18 +1,26 @@
 
-var kurz_taste_wb = {};
+var kurz_taste_wb = new Map()
 
 function set_bookmarks(){
 	var i;
-	const ul = document.getElementById('lesen_zeichen_liste_ul');
-	const listItems = ul.getElementsByTagName('li');
 
-	for (i = 0; i < listItems.length; i++) {
-		var hotkey = listItems[i].children[0].innerText;
-    var link = listItems[i].children[1].innerText;
-    kurz_taste_wb.set(hotkey, link);
+	const bookmarks_panel = document.getElementById('m_lesenzeichen_id');
+
+	const all_subject_lists = bookmarks_panel.getElementsByTagName('ul');
+
+	for (i = 0; i < all_subject_lists.length; i++){
+
+		const listItems = all_subject_lists[i].getElementsByTagName('li');
+
+		var j;
+		for (j = 0; j < listItems.length; j++) {
+			var hotkey = listItems[j].children[0].innerText;
+	    var link = listItems[j].children[1].innerText;
+	    kurz_taste_wb.set(hotkey, link);
+			}
+
 		}
 };
-
 set_bookmarks();
 
 var suche_option_wb = new Map();
