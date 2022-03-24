@@ -44,6 +44,8 @@ class Note_Update_form(FlaskForm):
 
 @app.route("/create_note", methods=["GET", "POST"])
 def create_note():
+	if "user_id" not in session:
+		return redirect(url_for('error_404'))
 	form = Note_Creation_form()
 	#if request.method == "POST":
 	if form.validate_on_submit():
@@ -62,6 +64,10 @@ def create_note():
 
 @app.route("/update_note/<int:id>", methods=["GET", "POST"])
 def update_note(id):
+	if "user_id" not in session:
+		return redirect(url_for('error_404'))
+	elif db.session.query(Note).get(id).parent_user != session["user_id"]:
+		return redirect(url_for('error_404'))
 	form = Note_Update_form()
 	#if request.method == "POST":
 	if form.validate_on_submit():
@@ -81,10 +87,12 @@ def update_note(id):
 	return render_template('notes/update_note.html', form=form,\
 	note_id=id, title=note.title, text=note.text)
 
-@app.route("/delete_note/<int:id>")
+#@app.route("/delete_note/<int:id>")
+'''
 def delete_note(id):
 	#if request.method == "POST":
 	note = db.session.query(Note).get(id)
 	db.session.delete(note)
 	db.session.commit()
 	return redirect(url_for('index'))
+'''
