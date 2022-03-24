@@ -27,13 +27,12 @@
 	.lesenzeichen_list_block{
 		width:30%;
 		margin:10px auto;
-		padding:5px;
-		border-right:1px dotted rgba(155,155,185, 1);
-
+		padding:2px 40px;
 	}
 
 	.lesenzeichen_liste_title--weiss{
 		color:var(--white);
+		margin-bottom: 8px;
 	}
 
 
@@ -41,37 +40,38 @@
 		padding:0px;
 		margin:0px;
 		width:100%;
-
 	}
 
 	.lesen_zeichen_liste_element--weiss{
-		padding-bottom:5px;
 		width:100%;
 		display:flex;
-		justify-content: space-around;
-		gap: 10px 10px;
-
+		gap: 2px 2px;
+		padding:2px 0px;
 	}
 
 	.lesenzeichen_kurz_name{
 	font-family: roboto;
 	letter-spacing: 2px;
+	width:50px;
+
 	}
 
 	.lesenzeichen_lange_name{
 	font-family: roboto;
 	letter-spacing: 2px;
-
+	width:100px;
 	}
 
 	.lesenzeichen_edit{
 	font-family: roboto;
 	letter-spacing: 2px;
-	padding:5px;
-	float:left;
+	padding:0px;
 	}
 
+	#bookmark_edit{
+		padding:2px;
 
+	}
 
 
 
