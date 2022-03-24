@@ -23,8 +23,6 @@
 	  format('.ttf');
 	}
 
-
-
 	:root {
 	  --invisible: rgba(0,0,0, 0.0);
 	  --black: rgba(0,0,0, 0.5);
@@ -44,11 +42,9 @@
 	pading:0;
 	margin:0;
 	word-wrap: break-word;
-
 	}
 
 	body{
-
 	background-image:linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.9)),
 	url('http://127.0.0.1:5000/static/images/007.jpg');
 	background-position:center center;
@@ -78,12 +74,12 @@
 		background-color: rgba(0,0,0,0.2);
 		z-index:4;
 	}
+
 .zeit_title--blau, .wetter_title--blau{
 color: var(--blue);
 }
 
 .hidden_cache{
-
 		display:none;
 }
 	#links-col{
@@ -130,8 +126,8 @@ color: var(--blue);
 		display:flex;
 		align-items:center;
 		flex-direction:row;
-
 	}
+
 	.mitte-col-panel-2{
 		height:70%;
 		width:100%;
@@ -168,21 +164,25 @@ color: var(--blue);
 		padding:10px;
 		border:1px solid var(--border-color);
 	}
+
 	#canvas {
 		position: absolute;
 		top: 0px;
 		left: 0px;
 		z-index:2;
 	}
+
 	#canvas2 {
 		display:block;
 		position:relative;
 		width:100%;
 	}
+
 	p{
 		font-family: roboto;
 		letter-spacing: 2px;
 	}
+
 	 h1,h2,h3,h4,h5{
 		color: rgba(255,255,255,0.8);
 	 }
@@ -194,6 +194,7 @@ color: var(--blue);
 	a{
 		color: #777777;
 	}
+
  #add_subject, #add_bookmark, #add_crypto, #edit_note{
 	 display:block;
 	 width:100%;
