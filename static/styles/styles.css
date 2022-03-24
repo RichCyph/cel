@@ -45,7 +45,7 @@
 	}
 
 	body{
-	background-image:linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.9)),
+	background-image:linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.6)),
 	url('http://127.0.0.1:5000/static/images/007.jpg');
 	background-position:center center;
 	background-size:cover;
@@ -201,9 +201,10 @@ color: var(--blue);
 	 padding:3px;
 	 text-align:center;
 	 margin: 0 auto;
-
-
  }
+
+
+
 	hr {margin:2px 0px;}
 
 	.form{
@@ -212,7 +213,7 @@ color: var(--blue);
 		flex-direction:column;
 		height:90%;
 		width:45%;
-		background-color: var(--panel-color);
+
 		margin:10px auto;
 		padding:10px;
 	}
@@ -246,7 +247,10 @@ color: var(--blue);
 		margin:1px;
 		color: rgba(255,255,255,0.8);
 	}
-
+.form-group	input:hover{
+ 	 	background-color: #bcbcbc;
+ 		color:#000000;
+  }
 .form-group textarea{
 	background-color:rgba(255,255,255,0.1);
 	border:none;
