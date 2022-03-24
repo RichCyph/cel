@@ -88,5 +88,5 @@ def index():
 		return render_template('auth/hallo.html', subjects=subList, cryptos=cryptos, timers=timers, user=user, notes=notes)
 
 @app.route("/error_404")
-def index():
-	return render_template('auth/error_404.html'
+def error_404():
+	return render_template('auth/error_404.html')
