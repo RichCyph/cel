@@ -50,6 +50,7 @@ class Bookmark_Update_form(FlaskForm):
 def create_bookmark(id):
 	if "user_id" not in session:
 		redirect(url_for('error_404'))
+
 	form = Bookmark_Creation_form(subject_id=id)
 	#if request.method == "POST":
 	if form.validate_on_submit():
@@ -71,13 +72,11 @@ def create_bookmark(id):
 @app.route("/update_bookmark/<int:subject_id>/<int:bookmark_id>", methods=["GET", "POST"])
 def update_bookmark(subject_id,bookmark_id):
 	bookmark = db.session.query(Bookmark).get(bookmark_id)
-	sbject = db.session.query(Subject).get(subject_id)
+	subject = db.session.query(Subject).get(subject_id)
 	if "user_id" not in session:
-		redirect(url_for('error_404'))
-	elif bookmark.parent_user != session["user_id"] or subejct.parent_user != session["user_id"]:
-		redirect(url_for('error_404'))
-
-
+		return redirect(url_for('error_404'))
+	elif bookmark.parent_user != session["user_id"] or subject.parent_user != session["user_id"]:
+		return redirect(url_for('error_404'))
 
 	form = Bookmark_Update_form()
 	#if request.method == "POST":
@@ -100,7 +99,13 @@ def update_bookmark(subject_id,bookmark_id):
 
 @app.route("/delete_bookmark/<int:id>")
 def delete_bookmark(id):
-	#if request.method == "POST":
+	bookmark = db.session.query(Bookmark).get(id)
+	if "user_id" not in session:
+		return redirect(url_for('error_404'))
+	elif bookmark.parent_user != session["user_id"]:
+		return redirect(url_for('error_404'))
+
+
 	bookmark = db.session.query(Bookmark).get(id)
 	db.session.delete(bookmark)
 	db.session.commit()
