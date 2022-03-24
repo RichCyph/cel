@@ -39,6 +39,11 @@ class Login_form(FlaskForm):
 	password = PasswordField('Password', validators=[DataRequired()])
 	submit = SubmitField('login')
 
+class Delete_Account_form(FlaskForm):
+	username = StringField('Username', validators=[DataRequired()])
+	password = PasswordField('Password', validators=[DataRequired()])
+	submit = SubmitField('delete_account')
+
 
 class User_Update_form(FlaskForm):
 	username = StringField('Username', validators=[DataRequired()])
@@ -229,6 +234,34 @@ def update_user():
 	afternoon_greeting=user.afternoon_greeting, morning_greeting=user.morning_greeting,\
 	evening_greeting=user.evening_greeting, night_greeting=user.night_greeting, home_title=user.home_title)
 
+
+#Login_wtf
+@app.route("/delete_account", methods=('GET', 'POST'))
+def delete_account():
+
+	form = Delete_Account_form()#if "GET", create form to send to template
+	if form.validate_on_submit():
+
+		name = form.username.data
+		password = form.password.data
+		error = None
+
+		user = User.query.filter_by(name = name).first()#first or else you get an iterator
+
+		if not user:
+			error = 'User not found.'
+			print(error)
+			flash(error)
+
+			#not check_password_hash(user.password, password)
+		elif not check_password_hash(user.password, password):
+			error = 'User name or password False.'
+			print(error)
+			flash(error)
+		if not error:
+			return redirect(url_for('delete_user'))
+
+	return render_template('auth/delete_account.html', form=form)
 
 @app.route("/delete_user")
 def delete_user():
