@@ -78,14 +78,14 @@
 
 						<span class="subject_title">{{ subject.title }}</span></a></h3>
 
-							<ul class="lesen_zeichen_liste_ul">
+							<ul class="lesen_zeichen_liste_ul" id="lesen_zeichen_liste_ul">
 
 								{% for bookmark in subject.bookmarks %}
 
-									<script>kurz_taste_wb.set("{{bookmark.hotkey}}","{{bookmark.link}}");</script>
 
 									<li class="lesen_zeichen_liste_element--weiss">
-
+										<span class='hidden_element'>{{bookmark.hotkey}}</span>
+										<span class='hidden_element'>{{bookmark.link}}</span>
 										<span class="lesenzeichen_kurz_name"><a href="{{bookmark.link}}" onmouseover="PlaySound('mySound')"
 										onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')" target="_blank">{{bookmark.hotkey}}</a></span>
 
