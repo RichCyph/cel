@@ -26,7 +26,7 @@ set_bookmarks();
 var suche_option_wb = new Map();
 
 					suche_option_wb.set("!g ","https://www.google.com/search?q=");
-					suche_option_wb.set("!y ","https://www.youtube.com/results?search_query=trance");
+					suche_option_wb.set("!y ","https://www.youtube.com/results?search_query=");
 					suche_option_wb.set("!w ","https://de.wikipedia.org/w/index.php?search=");
 
 $(document).keydown(function(e) {
