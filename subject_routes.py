@@ -43,6 +43,9 @@ class Subject_Update_form(FlaskForm):
 @app.route("/create_subject", methods=["GET", "POST"])
 def create_subject():
 
+	if "user_id" not in session:
+		return redirect(url_for('error_404'))
+
 	form = Subject_Creation_form()
 	#if request.method == "POST":
 	if form.validate_on_submit():
@@ -57,6 +60,12 @@ def create_subject():
 
 @app.route("/update_subject/<int:subject_id>", methods=["GET", "POST"])
 def update_subject(subject_id):
+
+	if "user_id" not in session:
+		return redirect(url_for('error_404'))
+	elif db.session.query(Subject).get(subject_id).parent_user != session["user_id"]:
+		return redirect(url_for('error_404'))
+
 	form = Subject_Update_form()
 	#if request.method == "POST":
 
@@ -76,6 +85,11 @@ def update_subject(subject_id):
 @app.route("/delete_subject/<int:id>")
 def delete_subject(id):
 	#if request.method == "POST":
+	if "user_id" not in session:
+		return redirect(url_for('error_404'))
+	elif db.session.query(Subject).get(id).parent_user != session["user_id"]:
+		return redirect(url_for('error_404'))
+
 	subject = db.session.query(Subject).get(id)
 	db.session.delete(subject)
 	db.session.commit()
