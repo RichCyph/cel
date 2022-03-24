@@ -3,7 +3,7 @@
 
 #
 """
-app.py: 
+app.py:
 """
 
 #D DEVELOPMENT
@@ -38,37 +38,46 @@ class Timer_Creation_form(FlaskForm):
 	minutes = IntegerField('Minutes', validators=[DataRequired()])
 	seconds = IntegerField('Seconds', validators=[DataRequired()])
 	create = SubmitField('Create_timer')
-	
+
 class Timer_Update_form(FlaskForm):
 	title = StringField('Title', validators=[DataRequired()])
 	hours = IntegerField('Hours', validators=[DataRequired()])
 	minutes = IntegerField('Minutes', validators=[DataRequired()])
 	seconds = IntegerField('Seconds', validators=[DataRequired()])
-	create = SubmitField('Update_timer')	
-	
+	create = SubmitField('Update_timer')
+
 @app.route("/create_timer", methods=["GET", "POST"])
 def create_timer():
-	
+
+	if "user_id" not in session:
+		return redirect(url_for('error_404'))
+
 	form = Timer_Creation_form()
 	#if request.method == "POST":
 	if form.validate_on_submit():
 		#form = Timer_Creation_form()
-		
+
 		title = form.title.data
 		hours = form.hours.data
 		minutes = form.minutes.data
 		seconds = form.seconds.data
-		
+
 		timer = Timer(title=title, hours=hours, minutes=minutes, seconds=seconds, parent_user=session["user_id"])
-		
+
 		db.session.add(timer)
 		db.session.commit()
 		return redirect(url_for('index'))
 	return render_template('timers/create_timer.html', form=form)
-	
-	
+
+
 @app.route("/update_timer/<int:id>", methods=["GET", "POST"])
 def update_timer(id):
+
+	if "user_id" not in session:
+		return redirect(url_for('error_404'))
+	elif db.session.query(Timer).get(id).parent_user != session["user_id"]:
+		return redirect(url_for('error_404'))
+
 	form = Timer_Update_form()
 	#if request.method == "POST":
 	if form.validate_on_submit():
@@ -87,10 +96,16 @@ def update_timer(id):
 	timer = db.session.query(Timer).get(id)
 	return render_template('timers/update_timer.html', form=form,\
 	timer_id=id, title=timer.title, hours=timer.hours, minutes=timer.minutes, seconds=timer.seconds)
-	
+
 @app.route("/delete_timer/<int:id>")
 def delete_timer(id):
 	#if request.method == "POST":
+
+	if "user_id" not in session:
+		return redirect(url_for('error_404'))
+	elif db.session.query(Timer).get(id).parent_user != session["user_id"]:
+		return redirect(url_for('error_404'))
+	
 	timer = db.session.query(Timer).get(id)
 	db.session.delete(timer)
 	db.session.commit()
