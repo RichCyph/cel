@@ -40,7 +40,7 @@ class Login_form(FlaskForm):
 	submit = SubmitField('login')
 
 class Delete_Account_form(FlaskForm):
-	username = StringField('Username', validators=[DataRequired()])
+	#username = StringField('Username', validators=[DataRequired()])
 	password = PasswordField('Password', validators=[DataRequired()])
 	submit = SubmitField('delete_account')
 
@@ -98,11 +98,9 @@ def registration():
 		if error:
 			return render_template('auth/registration.html', form=form)
 
-		result =  user_create(name, generate_password_hash(password))
+		result = user_create(name, generate_password_hash(password))
 
 		if result:
-			flash(result)
-			print(result)
 			return redirect(url_for('login'))
 
 
@@ -144,15 +142,18 @@ def login():
 
 @app.route("/logout")
 def logout():
+	if "user_id" not in session:
+		redirect(url_for('error_404'))
 	session.clear()
 	return redirect(url_for('index'))
 
-@app.route("/user_read")
+#@app.route("/user_read")
 def user_read(id):
 	user = User.query.get(id)
 	return user
 
-@app.route("/user_create")
+#@app.route("/user_create")
+#not a route, only a funciton, safe!
 def user_create(name, password):
 	user = User(name=name, password=password)
 	db.session.add(user)
@@ -190,6 +191,8 @@ def user_create(name, password):
 
 @app.route("/update_user", methods=('GET', 'POST'))
 def update_user():
+	if "user_id" not in session:
+		redirect(url_for('error_404'))
 	form = User_Update_form()
 	#if request.method == "POST":
 
@@ -231,6 +234,8 @@ def update_user():
 #Login_wtf
 @app.route("/change_password", methods=('GET', 'POST'))
 def change_password():
+	if "user_id" not in session:
+		redirect(url_for('error_404'))
 	print("password change before")
 	form = Change_Password_form()#if "GET", create form to send to template
 	if form.validate_on_submit():
@@ -269,15 +274,16 @@ def change_password():
 
 @app.route("/delete_account", methods=('GET', 'POST'))
 def delete_account():
-
+	if "user_id" not in session:
+		redirect(url_for('error_404'))
 	form = Delete_Account_form()#if "GET", create form to send to template
 	if form.validate_on_submit():
 
-		name = form.username.data
+		#name = form.username.data
 		password = form.password.data
 		error = None
 
-		user = User.query.filter_by(name = name).first()#first or else you get an iterator
+		user = User.query.filter_by(id=session["user_id"]).first()#first or else you get an iterator
 
 		if not user:
 			error = 'User not found.'
@@ -289,6 +295,7 @@ def delete_account():
 			error = 'User name or password False.'
 			print(error)
 			flash(error)
+
 		if not error:
 			return redirect(url_for('delete_user'))
 
