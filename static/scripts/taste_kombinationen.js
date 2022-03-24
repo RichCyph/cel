@@ -1,14 +1,30 @@
 
+var kurz_taste_wb = {};
+
+function set_bookmarks(){
+	var i;
+	const ul = document.getElementById('lesen_zeichen_liste_ul');
+	const listItems = ul.getElementsByTagName('li');
+
+	for (i = 0; i < listItems.length; i++) {
+		var hotkey = listItems[i].children[0].innerText;
+    var link = listItems[i].children[1].innerText;
+    kurz_taste_wb.set(hotkey, link);
+		}
+};
+
+set_bookmarks();
+
 var suche_option_wb = new Map();
-					
+
 					suche_option_wb.set("!g ","https://www.google.com/search?q=");
 					suche_option_wb.set("!y ","https://www.youtube.com/results?search_query=trance");
 					suche_option_wb.set("!w ","https://de.wikipedia.org/w/index.php?search=");
 
 $(document).keydown(function(e) {
-	
-	PlaySound("mykeySound");
-	
+
+PlaySound("mykeySound");
+
 	// Hot key ideas
 	// _a = 65
 	// _l = 76
@@ -16,7 +32,7 @@ $(document).keydown(function(e) {
 	// _w = 87
 	// _h = 72
 	// _o = 84
-	
+
 	if ( ( e.which === 13 ) && $('#suche_input').is(':focus') ) {
 		PlaySound("mygoSound");
 		var ziel = document.getElementById("suche_input").value;
@@ -29,6 +45,6 @@ $(document).keydown(function(e) {
 		else{
 			window.open('https://google.com/search?q='+ziel);
 		}
-	} 
-	
+	}
+
 });
