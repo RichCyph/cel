@@ -36,6 +36,7 @@
 	  --dark-blue: rgba(50, 100, 160, 0.3);
 	  --fullwidth: 100%;
 	  --border-color: rgba(0,0,0, 0.2);
+		--panel-color: rgba(0,0,0, 0.4);
 	}
 
 	*{
@@ -48,7 +49,7 @@
 
 	body{
 
-	background-image:linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.2)),
+	background-image:linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.9)),
 	url('http://127.0.0.1:5000/static/images/007.jpg');
 	background-position:center center;
 	background-size:cover;
@@ -95,7 +96,7 @@
 	.links-col-panel{
 		height:30%;
 		width:100%;
-		background-color: rgba(0,0,0,0.2);
+		background-color: rgba(0,0,0,0.4);
 		margin:0px 0px 5px 0px;
 		padding:10px;
 		border:1px solid var(--border-color);
@@ -119,7 +120,7 @@
 	.mitte-col-panel-1{
 		height:15%;
 		width:100%;
-		background-color: rgba(0,0,0,0.2);
+		background-color: var(--panel-color);
 		margin:0px 0px 5px 0px;
 		padding:10px;
 		border:1px solid var(--border-color);
@@ -131,7 +132,7 @@
 	.mitte-col-panel-2{
 		height:70%;
 		width:100%;
-		background-color: rgba(0,0,0,0.2);
+		background-color: var(--panel-color);
 		margin:0px 0;
 		padding:5px;
 		border:1px solid var(--border-color);
@@ -150,7 +151,7 @@
 	.rechts-col-panel-1{
 		height:40%;
 		width:100%;
-		background-color: rgba(0,0,0,0.2);
+		background-color: var(--panel-color);
 		margin:0px 0px 5px 0px;
 		padding:10px;
 		border:1px solid var(--border-color);
@@ -159,7 +160,7 @@
 	.rechts-col-panel-2{
 		min-height:30%;
 		width:100%;
-		background-color: rgba(0,0,0,0.2);
+		background-color: var(--panel-color);
 		margin:0px 0;
 		padding:10px;
 		border:1px solid var(--border-color);
@@ -196,7 +197,7 @@
 		flex-direction:column;
 		height:90%;
 		width:45%;
-		background-color: rgba(0,0,0,0.2);
+		background-color: var(--panel-color);
 		margin:10px auto;
 		padding:10px;
 	}
@@ -206,7 +207,7 @@
 		flex-direction:column;
 		height:90%;
 		width:70%;
-		background-color: rgba(0,0,0,0.2);
+		background-color: var(--panel-color);
 		margin:10px auto;
 		padding:10px;
 		overflow-y:auto;
@@ -229,7 +230,7 @@
 		height:70%;
 		overflow-y:auto;
 		padding:5px;
-		background-color: rgba(0,0,0, 0.3);
+		background-color: var(--panel-color);
 		<!-- and for firefox-->
 		scrollbar-color: rgba(50, 100, 160, 0.3) rgba(180, 220, 235, 0.6);
 		scrollbar-width: thin;
