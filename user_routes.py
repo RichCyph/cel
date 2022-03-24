@@ -45,7 +45,7 @@ class Delete_Account_form(FlaskForm):
 	submit = SubmitField('delete_account')
 
 class Change_Password_form(FlaskForm):
-	username = StringField('Username', validators=[DataRequired()])
+	#username = StringField('Username', validators=[DataRequired()])
 	current_password = PasswordField('Current Password', validators=[DataRequired()])
 	new_password = PasswordField('New Password', validators=[DataRequired()])
 	new_password2 = PasswordField('Confirm New Password', validators=[DataRequired(), EqualTo('new_password', message="New Password and Confirm Password do not match.")])
@@ -201,29 +201,35 @@ def update_user():
 		print('validated!')
 		user = db.session.query(User).get(session["user_id"])
 		form = User_Update_form()
+
 		if user == None:
 			error = "User not found."
 			print(error)
 			flash(error)
-		user.name = form.username.data
-		user.home_title = form.home_title.data
 
-		user.country = form.country.data
-		user.latitude = form.latitude.data
-		user.longitude = form.longitude.data
-
-		user.morning_greeting = form.morning_greeting.data
-		user.afternoon_greeting = form.afternoon_greeting.data
-		user.evening_greeting = form.evening_greeting.data
-		user.night_greeting = form.night_greeting.data
 
 		if error == None:
+			user.name = form.username.data
+			user.home_title = form.home_title.data
+			user.country = form.country.data
+			user.latitude = form.latitude.data
+			user.longitude = form.longitude.data
+			user.morning_greeting = form.morning_greeting.data
+			user.afternoon_greeting = form.afternoon_greeting.data
+			user.evening_greeting = form.evening_greeting.data
+			user.night_greeting = form.night_greeting.data
+
 			db.session.commit()
 			print('data commited')
 			return redirect(url_for('index'))
 
 
 	user = db.session.query(User).get(session["user_id"])
+	if user.latitude == None:
+		user.latitude = 0.
+	if user.longitude == None:
+		user.longitude = 0.
+
 	return render_template('auth/update_user.html', form=form,\
 	name=user.name, password=user.password,\
 	country=user.country, latitude=user.latitude, longitude=user.longitude,\
@@ -240,13 +246,13 @@ def change_password():
 	form = Change_Password_form()#if "GET", create form to send to template
 	if form.validate_on_submit():
 		print("password change")
-		name = form.username.data
+		#name = form.username.data
 		current_password = form.current_password.data
 		new_password = form.new_password.data
 		new_password2 = form.new_password2.data
 		error = None
 
-		user = User.query.filter_by(name = name).first()#first or else you get an iterator
+		user = User.query.filter_by(id=session["user_id"]).first()#first or else you get an iterator
 
 		if not user:
 			error = 'User not found.'
