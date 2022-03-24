@@ -42,8 +42,8 @@ app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['REMEMBER_COOKIE_SECURE'] = True
 app.config['REMEMBER_COOKIE_HTTPONLY'] = True
+app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=30)
 
-#app.config['PERMANENT_SESSION_LIFETIME'] =
 csrf.init_app(app)
 db = SQLAlchemy(app)
 
