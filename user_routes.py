@@ -143,7 +143,7 @@ def login():
 @app.route("/logout")
 def logout():
 	if "user_id" not in session:
-		redirect(url_for('error_404'))
+		return redirect(url_for('error_404'))
 	session.clear()
 	return redirect(url_for('index'))
 
@@ -192,7 +192,7 @@ def user_create(name, password):
 @app.route("/update_user", methods=('GET', 'POST'))
 def update_user():
 	if "user_id" not in session:
-		redirect(url_for('error_404'))
+		return redirect(url_for('error_404'))
 	form = User_Update_form()
 	#if request.method == "POST":
 
@@ -235,7 +235,7 @@ def update_user():
 @app.route("/change_password", methods=('GET', 'POST'))
 def change_password():
 	if "user_id" not in session:
-		redirect(url_for('error_404'))
+		return redirect(url_for('error_404'))
 	print("password change before")
 	form = Change_Password_form()#if "GET", create form to send to template
 	if form.validate_on_submit():
