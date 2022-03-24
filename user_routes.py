@@ -275,7 +275,8 @@ def change_password():
 @app.route("/delete_account", methods=('GET', 'POST'))
 def delete_account():
 	if "user_id" not in session:
-		redirect(url_for('error_404'))
+		return redirect(url_for('error_404'))
+	print(session["user_id"])
 	form = Delete_Account_form()#if "GET", create form to send to template
 	if form.validate_on_submit():
 
@@ -297,18 +298,19 @@ def delete_account():
 			flash(error)
 
 		if not error:
-			return redirect(url_for('delete_user'))
+			delete_user(session["user_id"])
+			return redirect(url_for('index'))
 
 	return render_template('auth/delete_account.html', form=form)
 
-@app.route("/delete_user")
-def delete_user():
+#@app.route("/delete_user")
+def delete_user(id):
 	#pass user id in form?
-	user = db.session.query(User).get(session["user_id"])
+	user = db.session.query(User).get(id)
 	db.session.delete(user)
 	db.session.commit()
 	session.clear()
-	return redirect(url_for('index'))
+	return
 
 #This is cool (if calls the following function
 #before every request. and there is a bp version.
