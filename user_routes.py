@@ -31,7 +31,7 @@ from models import User, Subject, Bookmark, Crypto, Timer, Note
 class Registration_form(FlaskForm):
 	username = StringField('Username', validators=[DataRequired()])
 	password = PasswordField('Password', validators=[DataRequired()])
-	password2 = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+	password2 = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password', message="New Password and Confirm Password do not match.")])
 	submit = SubmitField('register')
 
 class Login_form(FlaskForm):
@@ -48,7 +48,7 @@ class Change_Password_form(FlaskForm):
 	username = StringField('Username', validators=[DataRequired()])
 	current_password = PasswordField('Current Password', validators=[DataRequired()])
 	new_password = PasswordField('New Password', validators=[DataRequired()])
-	new_password2 = PasswordField('Confirm New Password', validators=[DataRequired(), EqualTo('new_password')])
+	new_password2 = PasswordField('Confirm New Password', validators=[DataRequired(), EqualTo('new_password', message="New Password and Confirm Password do not match.")])
 	submit = SubmitField('change_password')
 
 class User_Update_form(FlaskForm):
@@ -132,6 +132,7 @@ def login():
 			error = 'User name or password False.'
 			print(error)
 			flash(error)
+
 		if not error:
 			session.clear()
 			session['user_id'] = user.id
@@ -193,15 +194,14 @@ def update_user():
 	#if request.method == "POST":
 
 	if form.validate_on_submit():
-		errors = None
+		error = None
 		print('validated!')
 		user = db.session.query(User).get(session["user_id"])
 		form = User_Update_form()
-
-		#if (not check_password_hash(user.password, form.password.data)) or \
-		#(not check_password_hash(user.password, form.password2.data)):
-		#	error = 'password and confirmation password must match.'
-
+		if user == None:
+			error = "User not found."
+			print(error)
+			flash(error)
 		user.name = form.username.data
 		user.home_title = form.home_title.data
 
@@ -214,7 +214,7 @@ def update_user():
 		user.evening_greeting = form.evening_greeting.data
 		user.night_greeting = form.night_greeting.data
 
-		if errors == None:
+		if error == None:
 			db.session.commit()
 			print('data commited')
 			return redirect(url_for('index'))
