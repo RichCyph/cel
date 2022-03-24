@@ -49,15 +49,11 @@ class Change_Password_form(FlaskForm):
 	current_password = PasswordField('Current Password', validators=[DataRequired()])
 	new_password = PasswordField('New Password', validators=[DataRequired()])
 	new_password2 = PasswordField('Confirm New Password', validators=[DataRequired(), EqualTo('new_password')])
-	submit = SubmitField('delete_account')
+	submit = SubmitField('change_password')
 
 class User_Update_form(FlaskForm):
 	username = StringField('Username', validators=[DataRequired()])
-	password = PasswordField('Password', validators=[DataRequired()])
-	password2 = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
-
 	home_title = StringField('Home Title')
-
 	latitude = DecimalField('Latitude')
 	longitude = DecimalField('Longitude')
 	country = StringField('Country')
@@ -207,8 +203,6 @@ def update_user():
 		#	error = 'password and confirmation password must match.'
 
 		user.name = form.username.data
-		user.password = form.password.data
-		confirmation = form.password2.data
 		user.home_title = form.home_title.data
 
 		user.country = form.country.data
@@ -219,13 +213,6 @@ def update_user():
 		user.afternoon_greeting = form.afternoon_greeting.data
 		user.evening_greeting = form.evening_greeting.data
 		user.night_greeting = form.night_greeting.data
-
-
-
-		if password != user.password:
-			error = 'password and confirmation password must match.'
-			flash(error)
-			print(error)
 
 		if errors == None:
 			db.session.commit()
@@ -244,10 +231,10 @@ def update_user():
 #Login_wtf
 @app.route("/change_password", methods=('GET', 'POST'))
 def change_password():
-
+	print("password change before")
 	form = Change_Password_form()#if "GET", create form to send to template
 	if form.validate_on_submit():
-
+		print("password change")
 		name = form.username.data
 		current_password = form.current_password.data
 		new_password = form.new_password.data
@@ -261,7 +248,7 @@ def change_password():
 			print(error)
 			flash(error)
 
-			#not check_password_hash(user.password, password)
+		#not check_password_hash(user.password, password)
 		elif not check_password_hash(user.password, current_password):
 			error = 'User name or password False.'
 			print(error)
@@ -273,7 +260,7 @@ def change_password():
 			flash(error)
 
 		if not error:
-			user.password = generate_password_hash(new_password):
+			user.password = generate_password_hash(new_password)
 			db.session.commit()
 			print('data commited')
 			return redirect(url_for('index'))
