@@ -13,6 +13,12 @@
     <h1>Delete Account</h1>
     <p> To confirm that you want to delete your account,
       please enter your username and password</p>
+      {%for msg in get_flashed_messages() %}
+          <p class="error_msg">{{msg}}</p>
+      {% endfor %}
+      {%for msg in form.errors.items() %}
+          <p class="error_msg">{{msg[1][0]}}</p>
+      {% endfor %}
 	  {{ form.csrf_token }}
 
 	<br>
