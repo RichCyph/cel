@@ -66,7 +66,7 @@
 		<br>
 
 		<div class="all_lesenzeichen_listen">
-			<script>var kurz_taste_wb = new Map();</script>
+
 			{% if subjects %}
 
 				{% for subject in subjects %}
@@ -153,7 +153,7 @@
 	<br>
 
 	<div>
-		<script>const global_query_liste2 = [];</script>
+
 			<ul id="munzen">
 
 				{% for crypto in cryptos %}
@@ -178,25 +178,6 @@
 </div>
 
 </div>
-<!--
-<script>
-//Urh Global Variablen
-var global_benutzer_name = "{{user.name}}!";
-
-//begrussungen
-var global_morgengruss = "{{user.morning_greeting}}";
-var global_nachmittaggruss = "{{user.afternoon_greeting}}";
-var global_abendgruss = "{{user.evening_greeting}}";
-var global_nachtgruss = "{{user.night_greeting}}";
-
-//Wetter Global Variablen
-var global_lat = "{{user.latitude}}";
-var global_lon = "{{user.longitude}}";
-var global_lande_texte = "{{user.country}}";
-
-var global_sprachen_auswahl = "de" //en, de
-</script>
--->
 
 <script src="static/scripts/global_einstellungen.js"></script>
 <script src="static/scripts/uhr.js"></script>
@@ -206,10 +187,6 @@ var global_sprachen_auswahl = "de" //en, de
 <script src="static/scripts/coinbaseapi.js"></script>
 <script src="static/scripts/klangbeimaus.js"></script>
 <script src="static/scripts/zufall_bild.js"></script>
-<!--
-<script src="static/scripts/sprache_steuerung.js"></script>
--->
-
 <script src="static/scripts/fragment_shader.js"></script>
 
 {% endblock %}
