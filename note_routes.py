@@ -84,6 +84,7 @@ def update_note(id):
 		return redirect(url_for('index'))
 	session["current_note"]=id
 	note = db.session.query(Note).get(id)
+	form.text.data = note.text
 	return render_template('notes/update_note.html', form=form,\
 	note_id=id, title=note.title, text=note.text)
 
