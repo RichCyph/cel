@@ -44,6 +44,12 @@ class Delete_Account_form(FlaskForm):
 	password = PasswordField('Password', validators=[DataRequired()])
 	submit = SubmitField('delete_account')
 
+class Change_Password_form(FlaskForm):
+	username = StringField('Username', validators=[DataRequired()])
+	current_password = PasswordField('Current Password', validators=[DataRequired()])
+	new_password = PasswordField('New Password', validators=[DataRequired()])
+	new_password2 = PasswordField('Confirm New Password', validators=[DataRequired(), EqualTo('new_password')])
+	submit = SubmitField('delete_account')
 
 class User_Update_form(FlaskForm):
 	username = StringField('Username', validators=[DataRequired()])
@@ -236,6 +242,44 @@ def update_user():
 
 
 #Login_wtf
+@app.route("/change_password", methods=('GET', 'POST'))
+def change_password():
+
+	form = Change_Password_form()#if "GET", create form to send to template
+	if form.validate_on_submit():
+
+		name = form.username.data
+		current_password = form.current_password.data
+		new_password = form.new_password.data
+		new_password2 = form.new_password2.data
+		error = None
+
+		user = User.query.filter_by(name = name).first()#first or else you get an iterator
+
+		if not user:
+			error = 'User not found.'
+			print(error)
+			flash(error)
+
+			#not check_password_hash(user.password, password)
+		elif not check_password_hash(user.password, current_password):
+			error = 'User name or password False.'
+			print(error)
+			flash(error)
+
+		elif new_password != new_password2:
+			error = 'Password and confirmation do not match.'
+			print(error)
+			flash(error)
+
+		if not error:
+			user.password = generate_password_hash(new_password):
+			db.session.commit()
+			print('data commited')
+			return redirect(url_for('index'))
+
+	return render_template('auth/change_password.html', form=form)
+
 @app.route("/delete_account", methods=('GET', 'POST'))
 def delete_account():
 
