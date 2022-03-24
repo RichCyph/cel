@@ -6,11 +6,11 @@
 	}
 
 	.suche_input{
-		height:20px;
+		height:30px;
 		width:100%;
 		background-color:rgba(255,255,255,0.1);
 		border:none;
-		padding:1px;
+		padding:2px;
 		margin:1px;
 		color: rgba(255,255,255,0.8);
 
