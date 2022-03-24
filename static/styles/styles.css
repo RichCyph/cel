@@ -192,13 +192,15 @@ color: var(--blue);
 	 }
 
 	a{
-		color: white;
+		color: #444444;
 	}
- #add_subject, #add_bookmark, #edit_note{
+ #add_subject, #add_bookmark, #add_crypto, #edit_note{
 	 display:block;
 	 width:100%;
+	 padding:5px;
 	 text-align:center;
 	 margin: 0 auto;
+	 background:rgba(0,0,0,0.1);
 
  }
 	hr {margin:2px 0px;}
