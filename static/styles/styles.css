@@ -235,6 +235,10 @@
 		scrollbar-width: thin;
 	}
 
+	.error_msg{
+		color:#DD0000;
+	}
+	}
 	form::-webkit-scrollbar {
 		width: 10px;
 		background-color: rgba(50, 100, 160, 0.3);
