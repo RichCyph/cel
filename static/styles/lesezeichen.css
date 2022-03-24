@@ -1,5 +1,5 @@
 
-	
+
 	.all_lesenzeichen_listen{
 		width:100%;
 		display:flex;
@@ -7,7 +7,7 @@
 		flex-direction: row;
 		align-content: space-evenly;
 	}
-	
+
 	.lesenzeichen_title--weiss{
 		color:var(--white);
 		text-align:left;
@@ -15,7 +15,7 @@
 		padding:0px;
 		text-align:center;
 	}
-	
+
 	.lesenzeichen_item--blau{
 		color:var(--blue);
 		text-align:left;
@@ -23,61 +23,69 @@
 		padding:0px;
 		text-align:center;
 	}
-	
+
 	.lesenzeichen_list_block{
 		width:30%;
 		margin:10px auto;
 		padding:5px;
-		border-right:1px dotted rgba(155,155,255, 1);
-		
+		border-right:1px dotted rgba(155,155,185, 1);
+
 	}
-	
+
 	.lesenzeichen_liste_title--weiss{
 		color:var(--white);
 	}
-	
-	
+
+
 	.lesen_zeichen_liste_ul{
 		padding:0px;
 		margin:0px;
 		width:100%;
-		
+
 	}
 
 	.lesen_zeichen_liste_element--weiss{
 		padding-bottom:5px;
 		width:100%;
 		display:flex;
-		justify-content:space-between;
-		
+		justify-content: space-around;
+		gap: 10px 10px;
+
 	}
-	
+
 	.lesenzeichen_kurz_name{
 	font-family: roboto;
 	letter-spacing: 2px;
 	}
-	
+
 	.lesenzeichen_lange_name{
 	font-family: roboto;
 	letter-spacing: 2px;
 
 	}
 
-	
-	
-	
-	
-	
+	.lesenzeichen_edit{
+	font-family: roboto;
+	letter-spacing: 2px;
+	padding:5px;
+	float:left;
+	}
+
+
+
+
+
+
 	.lesenzeichen_kurz_name a{
 	color:var(--blue);
 	padding:2px;
 	}
-	
+
 	.lesenzeichen_lange_name a{
 	color:var(--white);
 	padding:2px;
 	}
-	
+
 	a:hover{
 	color:#fff;
 	background-color:var(--dark-blue);
@@ -86,5 +94,3 @@
 	a{
 	text-decoration:none;
 	}
-	
-
