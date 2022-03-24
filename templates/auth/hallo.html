@@ -93,7 +93,7 @@
 										<a href="{{bookmark.link}}" onmouseover="PlaySound('mySound')"
 										onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')" target="_blank">{{bookmark.title}}</a></span>
 
-										<span class="lesenzeichen_kurz_name">
+										<span class="lesenzeichen_edit">
 										<a href="{{ url_for('update_bookmark', bookmark_id=bookmark.id, subject_id=subject.id) }}"
 										onmouseover="PlaySound('mySound')"
 										onmouseout="StopSound('mySound')"
@@ -172,7 +172,7 @@
 				{% endfor %}
 			</ul>
 
-		<a href="{{ url_for('create_crypto')}}" onmouseover="PlaySound('mySound')"
+		<a href="{{ url_for('create_crypto')}}" id="add_crypto" onmouseover="PlaySound('mySound')"
 		onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Add New Crypto</a>
 	</div>
 </div>
