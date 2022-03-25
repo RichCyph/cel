@@ -30,24 +30,26 @@ class User(UserMixin, db.Model):
 	name = db.Column(db.String(80), unique=True, nullable=False)
 	password = db.Column(db.String(200), nullable=False)
 	time_created = db.Column(DateTime(timezone=True), server_default=func.now())
-	
+
 	home_title = db.Column(db.String(200), nullable=True)
-	
+
 	latitude = db.Column(db.Float, nullable=True)
 	longitude = db.Column(db.Float, nullable=True)
 	country = db.Column(db.String(200), nullable=True)
-	
+
 	morning_greeting = db.Column(db.String(200), nullable=True)
 	afternoon_greeting = db.Column(db.String(200), nullable=True)
 	evening_greeting = db.Column(db.String(200), nullable=True)
 	night_greeting = db.Column(db.String(200), nullable=True)
-	
+
+	#ip_address = db.Column(db.Integer, nullable=True)
+
 	bookmarks = relationship("Bookmark", cascade="all, delete")
 	subjects = relationship("Subject", cascade="all, delete")
 	cryptos = relationship("Crypto", cascade="all, delete")
 	timers = relationship("Timer", cascade="all, delete")
 	notes = relationship("Note", cascade="all, delete")
-	
+
 class Subject(db.Model):
 
 	__tablename__ = "subjects"
@@ -56,7 +58,7 @@ class Subject(db.Model):
 	title = db.Column(db.String(80), nullable=False)
 	parent_user = Column(Integer, ForeignKey('users.id'), nullable=False)
 	bookmarks = relationship("Bookmark", cascade="all, delete")
-	
+
 class Bookmark(db.Model):
 
 	__tablename__ = "bookmarks"
@@ -67,7 +69,7 @@ class Bookmark(db.Model):
 	link = db.Column(db.String(200), nullable=False)
 	parent_subject = Column(Integer, ForeignKey('subjects.id'), nullable=False)
 	parent_user = Column(Integer, ForeignKey('users.id'), nullable=False)
-	
+
 class Crypto(db.Model):
 
 	__tablename__ = "cryptos"
@@ -76,11 +78,11 @@ class Crypto(db.Model):
 	title = db.Column(db.String(200), nullable=False)
 	link = db.Column(db.String(200), nullable=True)
 	parent_user = Column(Integer, ForeignKey('users.id'), nullable=False)
-	
+
 	crypto_acronym = db.Column(db.String(20), nullable=False)
 	fiat_acronym = db.Column(db.String(20), nullable=False)
 	parent_user = Column(Integer, ForeignKey('users.id'), nullable=False)
-	
+
 class Timer(db.Model):
 
 	__tablename__ = "timers"
@@ -91,7 +93,7 @@ class Timer(db.Model):
 	minutes = db.Column(db.Integer, nullable=False)
 	seconds = db.Column(db.Integer, nullable=False)
 	parent_user = Column(Integer, ForeignKey('users.id'), nullable=False)
-	
+
 class Note(db.Model):
 
 	__tablename__ = "notes"
@@ -100,5 +102,3 @@ class Note(db.Model):
 	title = db.Column(db.String(200), nullable=True)
 	text = db.Column(db.Text, nullable=True)
 	parent_user = Column(Integer, ForeignKey('users.id'), nullable=False)
-	
-	
