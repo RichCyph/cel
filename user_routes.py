@@ -158,7 +158,7 @@ def user_create(name, password):
 	user = User(name=name, password=password)
 	db.session.add(user)
 	db.session.commit()
-
+	#user.ip_address = request.remote_addr
 	#Init Getting Started List
 	for i in range(6):
 
