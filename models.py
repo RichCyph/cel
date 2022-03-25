@@ -42,7 +42,7 @@ class User(UserMixin, db.Model):
 	evening_greeting = db.Column(db.String(200), nullable=True)
 	night_greeting = db.Column(db.String(200), nullable=True)
 
-	#ip_address = db.Column(db.Integer, nullable=True)
+	ip_address = db.Column(db.Integer, nullable=True)
 
 	bookmarks = relationship("Bookmark", cascade="all, delete")
 	subjects = relationship("Subject", cascade="all, delete")
