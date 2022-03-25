@@ -81,7 +81,7 @@ def index():
 		cryptos = db.session.query(Crypto).filter_by(parent_user = user_id).all()
 		timers = db.session.query(Timer).filter_by(parent_user = user_id).all()
 		notes = db.session.query(Note).filter_by(parent_user = user_id).all()
-
+		#print("The IP" + str(user.ip_address))
 		return render_template('auth/hallo.html', subjects=subList, cryptos=cryptos, timers=timers, user=user, notes=notes)
 
 @app.route("/error_404")
