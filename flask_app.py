@@ -46,7 +46,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=30)
 
 csrf.init_app(app)
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+migrate = Migrate(app, db, render_as_batch=True)
 paranoid = Paranoid(app)
 paranoid.redirect_view = '/'
 
