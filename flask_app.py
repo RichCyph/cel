@@ -11,6 +11,7 @@ import datetime
 
 #Libs
 from flask import Flask, redirect, render_template, request, url_for, session, flash
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_paranoid import Paranoid
 from sqlalchemy import (
@@ -30,9 +31,8 @@ csp = {
 					'https://api.coinbase.com', \
 					'https://ajax.googleapis.com', \
 					'https://fonts.googleapis.com']
-
-
 }
+
 app = Flask(__name__)
 Talisman(app, content_security_policy=csp)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test4.db'
@@ -46,7 +46,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=30)
 
 csrf.init_app(app)
 db = SQLAlchemy(app)
-
+migrate = Migrate(app, db)
 paranoid = Paranoid(app)
 paranoid.redirect_view = '/'
 
@@ -56,14 +56,11 @@ import user_routes, bookmark_routes,\
 from models import User, Subject, Bookmark, Crypto, Timer, Note
 
 
-
 class SubjectObject:
 	def __init__(self, title, id):
 		self.title = title
 		self.id = id
 		self.bookmarks = []
-
-
 
 @app.route("/")
 def index():
