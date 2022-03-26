@@ -11,6 +11,7 @@ import datetime
 
 #Libs
 from flask import Flask, g, redirect, render_template, request, url_for, session, flash
+from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import (
 		Table, Column, Integer, String, MetaData, ForeignKey, Boolean
@@ -230,11 +231,12 @@ def update_user():
 	if user.longitude == None:
 		user.longitude = 0.
 
-	return render_template('auth/update_user.html', form=form,\
+	return jsonify({'data': render_template('auth/update_user.html', \
+	#return render_template('auth/update_user.html', form=form,\
 	name=user.name, password=user.password,\
 	country=user.country, latitude=user.latitude, longitude=user.longitude,\
 	afternoon_greeting=user.afternoon_greeting, morning_greeting=user.morning_greeting,\
-	evening_greeting=user.evening_greeting, night_greeting=user.night_greeting, home_title=user.home_title)
+	evening_greeting=user.evening_greeting, night_greeting=user.night_greeting, home_title=user.home_title)})
 
 
 #Login_wtf
