@@ -58,9 +58,10 @@ function ruf_alle_queries(){
 	for (i = 0; i < listItems.length; i++) {
 		var krypto = listItems[i].children[0].innerText;//global_query_liste2[i][0];//initialized in hallo.html in krypto jinja
 		var fiat = listItems[i].children[1].innerText;//global_query_liste2[i][1];
+    var link = listItems[i].children[2].innerText;
     console.log(krypto);
 		var query = "https://api.coinbase.com/v2/prices/"+krypto+"-"+fiat+"/buy";
-		var id =  listItems[i].children[2].innerText;//global_query_liste2[i][2];
+		var id =  listItems[i].children[3].innerText;//global_query_liste2[i][2];
 		myWetter(krypto, query, listItems[i]);
 		}
 };
