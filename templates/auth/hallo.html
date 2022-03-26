@@ -133,11 +133,9 @@
 
 			{% for note in notes %}
 
-				<div  class="note_section">
-					<br>
-					<h1 class="zeitgeber_uhr--weiss"></h1>
-					<p>{{note.text}}</p>
-				</div>
+
+					<textarea id="note_text_area">{{note.text}}</textarea>
+
 
 				<br>
 
@@ -162,9 +160,10 @@
 
 
 					<li class="munzen_list_element">
-						<span class='krypto_info_links--blau'>{{crypto.crypto_acronym}}</span>
+						<span class='krypto_info_links--blau'><a class="crypto_link" href="">{{crypto.crypto_acronym}}</a></span>
 						<span class='hidden_element'>{{crypto.fiat_acronym}}</span>
 						<span class='hidden_element'>{{crypto.id}}</span>
+						<span class='hidden_element'>{{crypto.link}}</span>
 						<span class='krypto_info_rechts--weiss'></span>
 						<span class='krypto_info_rechts--weiss'><a href="{{ url_for('update_crypto',  id=crypto.id)}}" onmouseover="PlaySound('mySound')"
 							onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')"> Edit</a></span>
