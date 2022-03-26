@@ -11,8 +11,7 @@ up.addEventListener("click", function(e) {
      type: "GET",
      dataType: "json",
      success: function(data){
-       data = data.data;
-       modal.append(data)
+       console.log(data.form)
      }
    });
 e.preventDefault();
