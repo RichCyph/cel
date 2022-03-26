@@ -232,7 +232,8 @@ def update_user():
 		user.longitude = 0.
 
 	return jsonify({'data': render_template('auth/update_user.html', \
-	#return render_template('auth/update_user.html', form=form,\
+	#return render_template('auth/update_user.html',
+	form=form,\
 	name=user.name, password=user.password,\
 	country=user.country, latitude=user.latitude, longitude=user.longitude,\
 	afternoon_greeting=user.afternoon_greeting, morning_greeting=user.morning_greeting,\
