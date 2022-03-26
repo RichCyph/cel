@@ -158,15 +158,16 @@
 
 				{% for crypto in cryptos %}
 
-
 					<li class="munzen_list_element">
-						<span class='krypto_info_links--blau'><a class="crypto_link" href="">{{crypto.crypto_acronym}}</a></span>
-						<span class='hidden_element'>{{crypto.fiat_acronym}}</span>
-						<span class='hidden_element'>{{crypto.id}}</span>
-						<span class='hidden_element'>{{crypto.link}}</span>
-						<span class='krypto_info_rechts--weiss'></span>
-						<span class='krypto_info_rechts--weiss'><a href="{{ url_for('update_crypto',  id=crypto.id)}}" onmouseover="PlaySound('mySound')"
-							onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')"> Edit</a></span>
+
+							<a class="krypto_info_links--blau" href="">{{crypto.crypto_acronym}}</a>
+							<span class='hidden_element'>{{crypto.fiat_acronym}}</span>
+							<span class='hidden_element'>{{crypto.id}}</span>
+							<span class='hidden_element'>{{crypto.link}}</span>
+							<span class='krypto_info_rechts--weiss'></span>
+							<span class='krypto_info_rechts--weiss'><a href="{{ url_for('update_crypto',  id=crypto.id)}}" onmouseover="PlaySound('mySound')"
+								onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')"> Edit</a></span>
+
 					</li>
 
 				{% endfor %}
@@ -177,6 +178,12 @@
 	</div>
 </div>
 
+</div>
+
+<div class="modal" id="modal">
+		<div class="modal_form">
+				<h1>Modal</h1>
+		</div>
 </div>
 
 <script src="static/scripts/global_einstellungen.js"></script>
