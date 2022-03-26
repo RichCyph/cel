@@ -24,7 +24,7 @@ var get_csrf_token = function() {
     return cookieValue;
 };
 
-function myWetter(art, api_url, listItem) {
+function myWetter(art, api_url, link, listItem) {
 //	console.log(get_csrf_token());
 
     var xhttp = new XMLHttpRequest();
@@ -35,13 +35,12 @@ function myWetter(art, api_url, listItem) {
 
 			var data = this.response.data.amount;
 
-
-			span1 = listItem.getElementsByClassName("krypto_info_links--blau")[0];
-			span2 = listItem.getElementsByClassName("krypto_info_rechts--weiss")[0];
-
+			var span1 = listItem.getElementsByClassName("krypto_info_links--blau")[0];
+			var span2 = listItem.getElementsByClassName("krypto_info_rechts--weiss")[0];
+      listItem.getElementsByClassName("crypto_link")[0].setAttribute("href", link);
+      console.log(link)
 			span1.innerText = art;
 			span2.innerText = data;
-
          }
     };
 
@@ -59,10 +58,10 @@ function ruf_alle_queries(){
 		var krypto = listItems[i].children[0].innerText;//global_query_liste2[i][0];//initialized in hallo.html in krypto jinja
 		var fiat = listItems[i].children[1].innerText;//global_query_liste2[i][1];
     var link = listItems[i].children[2].innerText;
-    console.log(krypto);
+    console.log(link);
 		var query = "https://api.coinbase.com/v2/prices/"+krypto+"-"+fiat+"/buy";
-		var id =  listItems[i].children[3].innerText;//global_query_liste2[i][2];
-		myWetter(krypto, query, listItems[i]);
+		//var id =  listItems[i].children[3].innerText;//global_query_liste2[i][2];
+		myWetter(krypto, query, link, listItems[i]);
 		}
 };
 
