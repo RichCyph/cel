@@ -37,7 +37,7 @@ function myWetter(art, api_url, link, listItem) {
 
 			var span1 = listItem.getElementsByClassName("krypto_info_links--blau")[0];
 			var span2 = listItem.getElementsByClassName("krypto_info_rechts--weiss")[0];
-      listItem.getElementsByClassName("crypto_link")[0].setAttribute("href", link);
+      listItem.getElementsByClassName("krypto_info_links--blau")[0].href = link;
       console.log(link)
 			span1.innerText = art;
 			span2.innerText = data;
@@ -57,7 +57,7 @@ function ruf_alle_queries(){
 	for (i = 0; i < listItems.length; i++) {
 		var krypto = listItems[i].children[0].innerText;//global_query_liste2[i][0];//initialized in hallo.html in krypto jinja
 		var fiat = listItems[i].children[1].innerText;//global_query_liste2[i][1];
-    var link = listItems[i].children[2].innerText;
+    var link = listItems[i].children[3].innerText;
     console.log(link);
 		var query = "https://api.coinbase.com/v2/prices/"+krypto+"-"+fiat+"/buy";
 		//var id =  listItems[i].children[3].innerText;//global_query_liste2[i][2];
