@@ -231,20 +231,6 @@ def update_user():
 	if user.longitude == None:
 		user.longitude = 0.
 
-	return jsonify({'form':form.serialize(),\
-		'name': user.name,
-		'password': user.password,\
-		'country': user.country,
-		'latitude': user.latitude,
-		'longitude':user.longitude,\
-		'afternoon_greeting':user.afternoon_greeting,
-		'morning_greeting':user.morning_greeting,\
-		'evening_greeting':user.evening_greeting,
-		'night_greeting':user.night_greeting,
-		'home_title':user.home_title})
-
-
-'''
 	return jsonify({'data': render_template('auth/update_user.html', \
 	#return render_template('auth/update_user.html',
 	form=form,\
@@ -252,7 +238,7 @@ def update_user():
 	country=user.country, latitude=user.latitude, longitude=user.longitude,\
 	afternoon_greeting=user.afternoon_greeting, morning_greeting=user.morning_greeting,\
 	evening_greeting=user.evening_greeting, night_greeting=user.night_greeting, home_title=user.home_title)})
-'''
+
 
 #Login_wtf
 @app.route("/change_password", methods=('GET', 'POST'))
