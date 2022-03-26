@@ -1,25 +1,16 @@
 
 
 
-var myVar = setInterval(myWetter, 10*60*1000);
-var key = "cb5d35b9624e0f9a70b023db43de964f"
-var latlon = "lat=" + global_lat + "&lon=" + global_lon; //lat lon von global_einstellungen or hallo.html
-var api_url = "https://api.openweathermap.org/data/2.5/onecall?" + latlon + "&lang=de&units=metric&exclude=minutely&appid=" + key
+var up = document.getElementById("update_settings");
+up.addEventListener("click", function() {
 
-function myWetter() {
-    var xhttp = new XMLHttpRequest();
-	xhttp.responseType = 'json';
+    alert(document.getElementById('modal_background').style.);
+    var modal = document.getElementById("modal_background");
 
-    xhttp.onreadystatechange = function() {
-         if (this.readyState == 4 && this.status == 200) {
-			 document.getElementById("temp").innerText = this.response.current.temp;
-			 document.getElementById("gefuhl").innerText = this.response.current.weather[0].main;
-		 }
-		 document.getElementById("wetter_standort").innerText = global_lande_texte;
-    };
-    xhttp.open("GET", api_url, true);
-    xhttp.send();
-}
+    if(document.getElementById("modal_background").style.display == "flex"){
+       document.getElementById("modal_background").style.display == "none";
+    }else{
+       document.getElementById("modal_background").style.display == "flex";
+    }
 
-myWetter()
-         
+});
