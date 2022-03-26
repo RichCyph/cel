@@ -247,12 +247,14 @@ color: var(--blue);
 		margin:1px;
 		color: rgba(255,255,255,0.8);
 	}
+
 .form-group	input:hover{
  	 	background-color: #bcbcbc;
  		color:#000000;
   }
+
 .form-group textarea{
-	background-color:rgba(255,255,255,0.1);
+	background-color:rgba(255,255,255,0.7);
 	border:none;
 	padding:1px;
 	margin:1px;
