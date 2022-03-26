@@ -42,7 +42,7 @@
 
 	<div class="loginout, links-col-panel", id="links-col-panel-4">
 		<br>
-		<a href="{{ url_for('update_user') }}" onmouseover="PlaySound('mySound')"
+		<a href="{{ url_for('update_user') }}" id="update_settings" onmouseover="PlaySound('mySound')"
 		onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Update Settings</a>
 		<hr>
 		<a href="{{ url_for('logout') }}" onmouseover="PlaySound('mySound')"
@@ -180,7 +180,7 @@
 
 </div>
 
-<div class="modal" id="modal">
+<div class="modal" id="modal_background">
 		<div class="modal_form">
 				<h1>Modal</h1>
 		</div>
@@ -195,5 +195,5 @@
 <script src="static/scripts/klangbeimaus.js"></script>
 <script src="static/scripts/zufall_bild.js"></script>
 <script src="static/scripts/fragment_shader.js"></script>
-
+<script src="static/scripts/modal.js"></script>
 {% endblock %}
