@@ -21,7 +21,6 @@ up.addEventListener("click", function(e) {
      }
    });
 
-
 e.preventDefault();
 });
 
@@ -44,7 +43,6 @@ up.addEventListener("click", function(e) {
        });
      }
    });
-
 
 e.preventDefault();
 });
