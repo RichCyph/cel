@@ -1,0 +1,40 @@
+
+<div class="links-col" id="links-col">
+	<div class="links-col-panel" id="links-col-panel-1">
+		<h1 class="logo_title--weiss" id="logo_title_id">{{user.home_title}}</h1>
+		<canvas id="canvas2"></canvas>
+	</div><!-- logo ende -->
+
+	<div class="m_zeit, links-col-panel" id="m_zeit_id">
+
+		<h2 class="zeit_title--weiss" id="tageszeit"></h2>
+		<h2 class="zeit_title--blau" id="benutzer_name"></h2>
+		<br>
+		<h3 class="zeit_title--weiss" id="zeit_title_id">Zeit</h3>
+		<h3 class="zeit_title--blau" id="uhr"></h3>
+		<br>
+		<h3 class="zeit_title--weiss" id="date_title_id">Date</h3>
+		<h3 class="zeit_title--blau" id="datum"></h3>
+
+	</div> <!-- zeit ende -->
+
+	<div class="m_wetter, links-col-panel" id="m_wetter_id">
+		<h3 class="wetter_title--weiss" id="wetter_standort">Nirgendwo</h3>
+		<h3 class="wetter_title--blau" id="temp"></h3>
+		<h3 class="wetter_title--blau" id="gefuhl"></h3>
+	</div><!-- wetter ende -->
+
+	<div class="loginout, links-col-panel", id="links-col-panel-4">
+		<br>
+		<a href="{{ url_for('update_user') }}" id="update_settings" onmouseover="PlaySound('mySound')"
+		onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Update Settings</a>
+		<hr>
+		<a href="{{ url_for('logout') }}" onmouseover="PlaySound('mySound')"
+			onmouseout="StopSound('mySound')" onclick="PlaySound('mygoSound')">Logout</a>
+
+		<br>
+	</div>
+
+</div><!-- links col ende -->
+
+{% endblock %}
